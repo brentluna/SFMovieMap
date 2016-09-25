@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export const fetchLatLng = (data, success) => {
   return (
   $.ajax({

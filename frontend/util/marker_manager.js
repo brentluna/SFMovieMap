@@ -13,7 +13,6 @@ class MarkerManager {
     this.oms = new OverlappingMarkerSpiderfier(this.map, {legWeight: 3});
     this.iw = new google.maps.InfoWindow();
     this.oms.addListener('click', (mark, event) => {
-      console.log(this.createContent(mark));
       this.iw.setContent(this.createContent(mark));
       this.iw.open(this.map, mark);
     });
@@ -68,19 +67,7 @@ class MarkerManager {
           movieLocs: movie.locations
         });
 
-        // let infowindow = new google.maps.InfoWindow({
-        //   content: this.createContent(movie)
-        // });
-        // marker.addListener('click', () => {
-        //   infowindow.open(this.map, marker)
-        // });
-
-        // const iw = new google.maps.InfoWindow();
-        // this.oms.addListener('click', (mark, event) => {
-        //   iw.setContent(mark.title);
-        //   iw.open(this.map, mark);
-        // });
-        this.oms.addMarker(marker);
+     this.oms.addMarker(marker);
         this.markers.push(marker);
       }
     });
