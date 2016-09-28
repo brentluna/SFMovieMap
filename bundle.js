@@ -32755,6 +32755,14 @@
 	
 	var _search_container2 = _interopRequireDefault(_search_container);
 	
+	var _navbar = __webpack_require__(210);
+	
+	var _navbar2 = _interopRequireDefault(_navbar);
+	
+	var _search_results_container = __webpack_require__(211);
+	
+	var _search_results_container2 = _interopRequireDefault(_search_results_container);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32782,16 +32790,12 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(
-	            'h1',
-	            null,
-	            'San Francisco Movies'
-	          ),
+	          _react2.default.createElement(_navbar2.default, null),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'map-search' },
 	            _react2.default.createElement(_map_container2.default, null),
-	            _react2.default.createElement(_search_container2.default, null)
+	            _react2.default.createElement(_search_results_container2.default, null)
 	          )
 	        )
 	      );
@@ -34600,11 +34604,7 @@
 	        'div',
 	        { className: 'search-container' },
 	        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearch, placeholder: 'Search by Actor, Movie, Location, Director' }),
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          this.renderResults()
-	        )
+	        _react2.default.createElement('ul', null)
 	      );
 	    }
 	  }]);
@@ -34613,6 +34613,128 @@
 	}(_react2.default.Component);
 	
 	exports.default = Search;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _search_container = __webpack_require__(208);
+	
+	var _search_container2 = _interopRequireDefault(_search_container);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Navbar = function Navbar() {
+	
+		return _react2.default.createElement(
+			'div',
+			{ className: 'navbar' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'title-div' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'img-div' },
+					_react2.default.createElement('img', { src: './film.png' })
+				),
+				_react2.default.createElement(
+					'h1',
+					null,
+					'SF Movie Map'
+				)
+			),
+			_react2.default.createElement(_search_container2.default, null)
+		);
+	};
+	
+	exports.default = Navbar;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _reactRedux = __webpack_require__(195);
+	
+	var _search_results = __webpack_require__(212);
+	
+	var _search_results2 = _interopRequireDefault(_search_results);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			movies: state.movies
+		};
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_search_results2.default);
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SearchResults = function SearchResults(_ref) {
+		var movies = _ref.movies;
+	
+		var resultLis = [];
+		if (movies.length) {
+			movies.forEach(function (res, idx) {
+				resultLis.push(_react2.default.createElement(
+					'li',
+					{ key: idx },
+					_react2.default.createElement(
+						'h4',
+						null,
+						res.title
+					),
+					_react2.default.createElement(
+						'p',
+						null,
+						res.locations
+					)
+				));
+			});
+		}
+		return _react2.default.createElement(
+			'ul',
+			null,
+			resultLis
+		);
+	};
+	
+	exports.default = SearchResults;
 
 /***/ }
 /******/ ]);

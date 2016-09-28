@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +48,6 @@ class Search extends React.Component {
       <div className='search-container'>
         <input type='text' onChange={this.updateSearch} placeholder='Search by Actor, Movie, Location, Director'/>
         <ul>
-          {this.renderResults()}
         </ul>
       </div>
     );

@@ -2,7 +2,8 @@ import {Provider} from 'react-redux';
 import React from 'react';
 import MapContainer from './map/map_container';
 import SearchContainer from './search_container';
-
+import Navbar from './navbar/navbar';
+import SearchResultsContainer from './search/search_results_container';
 
 class Root extends React.Component {
   constructor(props) {
@@ -15,10 +16,10 @@ class Root extends React.Component {
       <Provider store={this.props.store}>
       <div>
 
-        <h1>San Francisco Movies</h1>
+        <Navbar />
         <div className='map-search'>
           <MapContainer />
-          <SearchContainer />
+          <SearchResultsContainer />
         </div>
       </div>
       </Provider>
