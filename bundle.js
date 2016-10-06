@@ -34716,20 +34716,31 @@
 					{ key: idx },
 					_react2.default.createElement(
 						'h4',
-						null,
+						{ className: 'search-title' },
 						res.title
 					),
 					_react2.default.createElement(
-						'p',
-						null,
-						res.locations
+						'div',
+						{ className: 'search-info' },
+						_react2.default.createElement(
+							'p',
+							null,
+							'Location: ',
+							res.locations
+						),
+						_react2.default.createElement(
+							'p',
+							null,
+							'Released: ',
+							res.release_year
+						)
 					)
 				));
 			});
 		}
 		return _react2.default.createElement(
 			'ul',
-			null,
+			{ className: 'search-ul' },
 			resultLis
 		);
 	};

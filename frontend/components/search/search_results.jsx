@@ -6,19 +6,23 @@ const SearchResults = ({movies}) => {
 	      movies.forEach((res, idx) => {
 	        resultLis.push(
 	          <li key={idx}>
-	            <h4>
+	            <h4 className='search-title'>
 	              {res.title}
 	            </h4>
-
-	            <p>
-	              {res.locations}
-	            </p>
+	            <div className='search-info'>
+		            <p>
+		              Location: {res.locations}
+		            </p>
+		            <p>
+		            	Released: {res.release_year}
+	            	</p>
+	            </div>
 	          </li>
 	        );
 	      });
 	    }
 	return(
-		<ul>
+		<ul className='search-ul'>
 			{resultLis}
 		</ul>
 	)
