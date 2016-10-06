@@ -113,7 +113,10 @@ p {
 }
 li {
   list-style: none;
-  border-bottom: 1px solid #ccc;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  color: #ddd;
+  font-family: sans-serif;
 }
 .map-search {
   display: flex;
@@ -137,6 +140,7 @@ input {
   width: 200px;
   outline: none;
   padding: 10px;
+  font-size: 16px;
 }  
 
 .search-info {
@@ -148,8 +152,11 @@ input {
 
 }
 
+
+
+
 .search-ul {
  max-height: 600px;
  overflow-y: scroll;
-
+ background: teal   
 }

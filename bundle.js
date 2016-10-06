@@ -34556,7 +34556,6 @@
 	
 	    _this.state = { search: '', results: '' };
 	    _this.updateSearch = _this.updateSearch.bind(_this);
-	    _this.renderResults = _this.renderResults.bind(_this);
 	    return _this;
 	  }
 	
@@ -34574,37 +34573,12 @@
 	      });
 	    }
 	  }, {
-	    key: 'renderResults',
-	    value: function renderResults() {
-	      var resultLis = [];
-	      if (this.props.movies.length) {
-	        this.props.movies.forEach(function (res, idx) {
-	          resultLis.push(_react2.default.createElement(
-	            'li',
-	            { key: idx },
-	            _react2.default.createElement(
-	              'h4',
-	              null,
-	              res.title
-	            ),
-	            _react2.default.createElement(
-	              'p',
-	              null,
-	              res.locations
-	            )
-	          ));
-	        });
-	      }
-	      return resultLis;
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'search-container' },
-	        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearch, placeholder: 'Search by Actor, Movie, Location, Director' }),
-	        _react2.default.createElement('ul', null)
+	        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearch, placeholder: 'Search by Actor, Movie, Location, Director' })
 	      );
 	    }
 	  }]);
