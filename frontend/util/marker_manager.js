@@ -48,7 +48,12 @@ class MarkerManager {
   }
 
   createMarker(movie) {
-    fetchLatLng(movie.locations, res => {
+    let movieLoc = movie.locations;
+    if (movieLoc.indexOf(' from ')) {
+      movieLoc = movieLoc.split(' from')[0];
+    }
+
+    fetchLatLng(`${movieLoc}, San Francisco, CA`, res => {
 
       if (res.results.length) {
         const latLng = res.results[0].geometry.location;

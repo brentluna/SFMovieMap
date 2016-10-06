@@ -33690,7 +33690,12 @@
 	    value: function createMarker(movie) {
 	      var _this3 = this;
 	
-	      (0, _map_api_util.fetchLatLng)(movie.locations, function (res) {
+	      var movieLoc = movie.locations;
+	      if (movieLoc.indexOf(' from ')) {
+	        movieLoc = movieLoc.split(' from')[0];
+	      }
+	
+	      (0, _map_api_util.fetchLatLng)(movieLoc + ', San Francisco, CA', function (res) {
 	
 	        if (res.results.length) {
 	          var latLng = res.results[0].geometry.location;
