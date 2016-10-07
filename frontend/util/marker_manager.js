@@ -22,7 +22,11 @@ class MarkerManager {
   updateMarkers(movies) {
     this.movies = movies;
     this.removeMarkers();
-    this.movies.forEach(movie => this.createMarker(movie));
+    this.movies.forEach(movie => {
+      movie.locations.forEach(loc => {
+        this.createMarker(movie, loc);
+      });
+    }); 
   }
 
 
@@ -47,8 +51,9 @@ class MarkerManager {
     );
   }
 
-  createMarker(movie) {
-    let movieLoc = movie.locations;
+  createMarker(movie, loc) {
+
+    let movieLoc = loc;
     if (movieLoc.indexOf(' from ')) {
       movieLoc = movieLoc.split(' from')[0];
     }
@@ -67,7 +72,7 @@ class MarkerManager {
           actor_2: movie.actor_2,
           actor_3: movie.actor_3,
           release_year: movie.release_year,
-          locations: movie.locations,
+          locations: loc,
           position: latLng,
           movieLocs: movie.locations
         });

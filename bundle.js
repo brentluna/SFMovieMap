@@ -22454,10 +22454,26 @@
 	          // let success = data => store.dispatch(receiveMovies(data));
 	          var success = function success(data) {
 	            var length = data.length;
-	            var counter = 0;
 	            var finalData = [];
+	            var condensedData = {};
+	            data.forEach(function (res) {
 	
-	            data.forEach(function (datum) {
+	              if (!condensedData[res.title]) {
+	                var tempLoc = res.locations;
+	                condensedData[res.title] = res;
+	                condensedData[res.title].locations = [tempLoc];
+	              } else {
+	                condensedData[res.title].locations.push(res.locations);
+	              }
+	            });
+	
+	            console.log(condensedData);
+	            var newArr = Object.keys(condensedData).map(function (el) {
+	              return condensedData[el];
+	            });
+	            console.log(newArr);
+	            var counter = newArr.length;
+	            newArr.forEach(function (datum) {
 	              (0, _map_api_util.fetchOMD)({ yr: datum.release_year, title: datum.title }, function (res) {
 	                counter++;
 	
@@ -22466,6 +22482,7 @@
 	                newData['plot'] = res.Plot;
 	                finalData.push(newData);
 	                if (counter === length) {
+	                  console.log('inside dispatch');
 	                  store.dispatch((0, _movie_action.receiveMovies)(finalData));
 	                }
 	              });
@@ -33698,7 +33715,9 @@
 	      this.movies = movies;
 	      this.removeMarkers();
 	      this.movies.forEach(function (movie) {
-	        return _this2.createMarker(movie);
+	        movie.locations.forEach(function (loc) {
+	          _this2.createMarker(movie, loc);
+	        });
 	      });
 	    }
 	  }, {
@@ -33716,10 +33735,10 @@
 	    }
 	  }, {
 	    key: 'createMarker',
-	    value: function createMarker(movie) {
+	    value: function createMarker(movie, loc) {
 	      var _this3 = this;
 	
-	      var movieLoc = movie.locations;
+	      var movieLoc = loc;
 	      if (movieLoc.indexOf(' from ')) {
 	        movieLoc = movieLoc.split(' from')[0];
 	      }
@@ -33737,7 +33756,7 @@
 	            actor_2: movie.actor_2,
 	            actor_3: movie.actor_3,
 	            release_year: movie.release_year,
-	            locations: movie.locations,
+	            locations: loc,
 	            position: latLng,
 	            movieLocs: movie.locations
 	          });

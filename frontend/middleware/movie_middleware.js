@@ -9,10 +9,24 @@ const MovieMiddleware = store => next => action => {
       // let success = data => store.dispatch(receiveMovies(data));
       let success = data => {
       	const length = data.length; 
-      	let counter = 0;
       	let finalData = [];
+      	let	condensedData = {};
+      	data.forEach(res => {
 
-      	data.forEach(datum => {
+      		if (!condensedData[res.title]) {
+      			let tempLoc = res.locations;
+      			condensedData[res.title] = res;
+      			condensedData[res.title].locations = [tempLoc];
+      		} else {
+      			condensedData[res.title].locations.push(res.locations)
+      		}
+      	});
+
+      	console.log(condensedData)
+      	let newArr = Object.keys(condensedData).map(el => condensedData[el]);
+      	console.log(newArr)
+      	let counter = newArr.length
+      	newArr.forEach(datum => {
 					fetchOMD({yr: datum.release_year, title: datum.title}, res => {
 						counter++;
 
@@ -21,6 +35,7 @@ const MovieMiddleware = store => next => action => {
 						newData['plot'] = res.Plot;
 						finalData.push(newData);
 						if (counter === length) {
+							console.log('inside dispatch')
 							store.dispatch(receiveMovies(finalData));
 						}
 					})      		
