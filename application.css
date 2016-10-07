@@ -221,12 +221,25 @@ img {
   margin: 5px;
 }
 
+.collapse-title:hover {
+  font-size: 17px;
+}
+
 .Collapsible {
   font-size: 14px;
   margin: 5px;
   cursor: pointer
 }
 
-.Collapsible_contentInner {
+.location-lis:hover {
+  cursor: default;
+}
+
+
+.plot {
   font-size: 12px;
+}
+
+.plot:hover {
+  cursor: default
 }

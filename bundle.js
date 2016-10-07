@@ -34797,7 +34797,11 @@
 							_react2.default.createElement(
 								_reactCollapsible2.default,
 								{ className: 'collapse-title', trigger: 'Plot' },
-								res.plot
+								_react2.default.createElement(
+									'div',
+									{ className: 'plot' },
+									res.plot
+								)
 							),
 							_react2.default.createElement(
 								'p',

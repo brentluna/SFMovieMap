@@ -32,7 +32,9 @@ const SearchResults = ({movies}) => {
 					            </ul>
 				            </Collapsible>
 				            <Collapsible className='collapse-title'trigger='Plot'>
+				            	<div className='plot'>
 				            	{res.plot}
+				            	</div>
 				            </Collapsible>
 				            <p>
 				            	Released: {res.release_year}
