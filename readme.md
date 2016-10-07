@@ -1,5 +1,5 @@
-## San Francisco Movie App
-[Live Link](http://www.brentluna.com/SFMovieMap/)
+## SF Film App
+[Live Link](http://www.brentluna.com/sf_film_app/)
 
 ### Description 
 
