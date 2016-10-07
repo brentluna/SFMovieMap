@@ -111,9 +111,10 @@ h1 {
 }
 
 .img-div {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+  width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-right: 20px;
 }
 
 .img-div img {
@@ -137,9 +138,10 @@ p {
 }
 
 .location-lis {
-
-
+  padding: 3px;
+  font-size: 12px;
 }
+
 .map-search {
   display: flex;
   margin: 40px auto;
@@ -190,6 +192,11 @@ input {
   justify-content: space-between;
 }
 
+.github {
+  font-size: 40px;
+  margin-right: 10px;
+  color: black;
+}
 img {
   width: 100%;
   object-fit: cover;
@@ -211,4 +218,15 @@ img {
 
 .collapse-title {
   font-size: 16px;
+  margin: 5px;
+}
+
+.Collapsible {
+  font-size: 14px;
+  margin: 5px;
+  cursor: pointer
+}
+
+.Collapsible_contentInner {
+  font-size: 12px;
 }

@@ -10,11 +10,13 @@ const Navbar = () => {
 			<div className='nav-div'>
 			<div className='title-div'>
 				<div className='img-div'>
-					<img src='./film.png' />	
+					<img src='./movie_camera.png' />	
 				</div>
-				<h1>SF Film Map</h1>
+				<h1>SF Film app</h1>
 			</div>
-				<GitHub />
+				<a href='http://github.com/brentluna/SFMovieMap' target='_blank'>
+				<GitHub className='github' />
+				</a>
 			</div>
 		</div>
 		)

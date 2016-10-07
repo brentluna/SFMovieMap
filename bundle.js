@@ -34677,15 +34677,19 @@
 					_react2.default.createElement(
 						'div',
 						{ className: 'img-div' },
-						_react2.default.createElement('img', { src: './film.png' })
+						_react2.default.createElement('img', { src: './movie_camera.png' })
 					),
 					_react2.default.createElement(
 						'h1',
 						null,
-						'SF Film Map'
+						'SF Film app'
 					)
 				),
-				_react2.default.createElement(_github2.default, null)
+				_react2.default.createElement(
+					'a',
+					{ href: 'http://github.com/brentluna/SFMovieMap', target: '_blank' },
+					_react2.default.createElement(_github2.default, { className: 'github' })
+				)
 			)
 		);
 	};
