@@ -18,3 +18,12 @@ export const fetchMovies = (data, success) => (
     error: () => console.log('error in fetchMovies')
   })
 );
+
+export const fetchOMD = (data, success) => (
+  $.ajax({
+    method: 'get',
+    url: `http://omdbapi.com/?plot=short&y=${data.yr}&t=${data.title}`,
+    success,
+    error: () => console.log('error in fetchMOD')
+  })
+);

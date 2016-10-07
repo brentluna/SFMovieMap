@@ -22451,8 +22451,25 @@
 	
 	      switch (action.type) {
 	        case _movie_action.MovieConstants.FETCH_MOVIES:
+	          // let success = data => store.dispatch(receiveMovies(data));
 	          var success = function success(data) {
-	            return store.dispatch((0, _movie_action.receiveMovies)(data));
+	            var length = data.length;
+	            var counter = 0;
+	            var finalData = [];
+	
+	            data.forEach(function (datum) {
+	              (0, _map_api_util.fetchOMD)({ yr: datum.release_year, title: datum.title }, function (res) {
+	                counter++;
+	
+	                var newData = datum;
+	                newData['poster'] = res.Poster;
+	                newData['plot'] = res.Plot;
+	                finalData.push(newData);
+	                if (counter === length) {
+	                  store.dispatch((0, _movie_action.receiveMovies)(finalData));
+	                }
+	              });
+	            });
 	          };
 	          (0, _map_api_util.fetchMovies)(action.data, success);
 	          return next(action);
@@ -22474,7 +22491,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchMovies = exports.fetchLatLng = undefined;
+	exports.fetchOMD = exports.fetchMovies = exports.fetchLatLng = undefined;
 	
 	var _jquery = __webpack_require__(193);
 	
@@ -22499,6 +22516,17 @@
 	    success: success,
 	    error: function error() {
 	      return console.log('error in fetchMovies');
+	    }
+	  });
+	};
+	
+	var fetchOMD = exports.fetchOMD = function fetchOMD(data, success) {
+	  return _jquery2.default.ajax({
+	    method: 'get',
+	    url: 'http://omdbapi.com/?plot=short&y=' + data.yr + '&t=' + data.title,
+	    success: success,
+	    error: function error() {
+	      return console.log('error in fetchMOD');
 	    }
 	  });
 	};
@@ -33579,7 +33607,8 @@
 	
 	var mapOptions = {
 	  center: { lat: 37.773972, lng: -122.431297 },
-	  zoom: 12
+	  zoom: 12,
+	  styles: [{ "featureType": "landscape.man_made", "elementType": "geometry", "stylers": [{ "color": "#f7f1df" }] }, { "featureType": "landscape.natural", "elementType": "geometry", "stylers": [{ "color": "#d0e3b4" }] }, { "featureType": "landscape.natural.terrain", "elementType": "geometry", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.business", "elementType": "all", "stylers": [{ "visibility": "off" }] }, { "featureType": "poi.medical", "elementType": "geometry", "stylers": [{ "color": "#fbd3da" }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#bde6ab" }] }, { "featureType": "road", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" }] }, { "featureType": "road", "elementType": "labels", "stylers": [{ "visibility": "off" }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffe15f" }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#efd151" }] }, { "featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }] }, { "featureType": "road.local", "elementType": "geometry.fill", "stylers": [{ "color": "black" }] }, { "featureType": "transit.station.airport", "elementType": "geometry.fill", "stylers": [{ "color": "#cfb2db" }] }, { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#a2daf2" }] }]
 	};
 	
 	var Map = function (_React$Component) {
@@ -34682,6 +34711,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _map_api_util = __webpack_require__(192);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var SearchResults = function SearchResults(_ref) {
@@ -34694,24 +34725,33 @@
 					'li',
 					{ key: idx },
 					_react2.default.createElement(
-						'h4',
-						{ className: 'search-title' },
-						res.title
+						'div',
+						{ className: 'thumbnail-div' },
+						_react2.default.createElement('img', { src: res.poster })
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'search-info' },
+						null,
 						_react2.default.createElement(
-							'p',
-							null,
-							'Location: ',
-							res.locations
+							'h4',
+							{ className: 'search-title' },
+							res.title
 						),
 						_react2.default.createElement(
-							'p',
-							null,
-							'Released: ',
-							res.release_year
+							'div',
+							{ className: 'search-info' },
+							_react2.default.createElement(
+								'p',
+								null,
+								'Location: ',
+								res.locations
+							),
+							_react2.default.createElement(
+								'p',
+								null,
+								'Released: ',
+								res.release_year
+							)
 						)
 					)
 				));
@@ -34723,6 +34763,70 @@
 			resultLis
 		);
 	};
+	
+	// class SearchResults extends React.Component {
+	// 	constructor(props) {
+	// 		super(props);
+	// 		this.updateState = this.updateState.bind(this);
+	// 		this.state = {data: []};
+	// 		this.resultLis = this.resultLis.bind(this);
+	// 	}
+	
+	// 	componentWillReceiveProps() {
+	// 		this.updateState();
+	// 	}
+	
+	// 	resultLis() {
+	//     let lis = []
+	// 		if (this.state.data.length) {
+	// 	      this.state.data.forEach((res, idx) => {
+	// 	      		lis.push(
+	// 		          <li key={idx}>
+	
+	// 		          	<div>
+	// 			            <h4 className='search-title'>
+	// 			              {res.title}
+	// 			            </h4>
+	// 			            <div className='search-info'>
+	// 				            <p>
+	// 				              Location: {res.locations}
+	// 				            </p>
+	// 				            <p>
+	// 				            	Released: {res.release_year}
+	// 			            	</p>
+	// 			            </div>
+	// 		            </div>
+	// 		          </li>
+	// 		        );
+	// 	      	});
+	// 	   	return lis;
+	// 	   }
+	// 	}
+	
+	// 	updateState() {
+	// 		if (this.props.movies.length) {
+	// 			this.props.movies.forEach((res, idx) => {
+	
+	// 				fetchOMD({yr: res.release_year, title: res.title}, resOMD => {
+	// 					oldState = this.state.data;
+	// 					oldState.push({title: res.title, loctions: res.locations, yr: res.release_year, poster: resOMD.Poster});
+	// 					this.setState({data: oldState})
+	// 				});
+	
+	// 			});
+	// 		}
+	// 	}
+	
+	// 	render() {
+	// 		let lis = this.resultLis();
+	// 		return (
+	// 			<ul className='search-ul'>
+	// 				{lis}
+	// 			</ul>
+	// 			)
+	// 	}
+	// }
+	
 	
 	exports.default = SearchResults;
 

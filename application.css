@@ -117,6 +117,7 @@ li {
   border-bottom: 1px solid #eee;
   color: #ddd;
   font-family: sans-serif;
+  display: flex;
 }
 .map-search {
   display: flex;
@@ -152,8 +153,15 @@ input {
 
 }
 
+img {
+  width: 100%;
+}
 
+.thumbnail-div {
+  width: 80px;
 
+  object-fit: contain;
+}   
 
 .search-ul {
  max-height: 600px;
