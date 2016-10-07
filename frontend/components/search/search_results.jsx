@@ -1,5 +1,6 @@
 import React from 'react';
 import {fetchOMD} from '../../util/map_api_util';
+import SearchContainer from '../search_container';
 import Collapsible from 'react-collapsible';
 
 const SearchResults = ({movies}) => {
@@ -43,9 +44,12 @@ const SearchResults = ({movies}) => {
 	      });
 	    }
 	return(
+		<div className='search-div'>
+			<SearchContainer />
 		<ul className='search-ul'>
 			{resultLis}
 		</ul>
+		</div>
 	)
 }
 
