@@ -8,7 +8,6 @@ const MovieMiddleware = store => next => action => {
     case MovieConstants.FETCH_MOVIES:
       // let success = data => store.dispatch(receiveMovies(data));
       let success = data => {
-      	const length = data.length; 
       	let finalData = [];
       	let	condensedData = {};
       	data.forEach(res => {
@@ -25,7 +24,9 @@ const MovieMiddleware = store => next => action => {
       	console.log(condensedData)
       	let newArr = Object.keys(condensedData).map(el => condensedData[el]);
       	console.log(newArr)
-      	let counter = newArr.length
+      	let length = newArr.length;
+      	let counter = 0;
+      	console.log(`counter: ${counter}`)
       	newArr.forEach(datum => {
 					fetchOMD({yr: datum.release_year, title: datum.title}, res => {
 						counter++;
@@ -34,6 +35,7 @@ const MovieMiddleware = store => next => action => {
 						newData['poster'] = res.Poster;
 						newData['plot'] = res.Plot;
 						finalData.push(newData);
+
 						if (counter === length) {
 							console.log('inside dispatch')
 							store.dispatch(receiveMovies(finalData));

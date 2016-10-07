@@ -111,7 +111,7 @@ p {
   margin: 5px;
 
 }
-li {
+.movie-lis {
   list-style: none;
   padding: 20px;
   border-bottom: 1px solid #eee;
@@ -119,9 +119,15 @@ li {
   font-family: sans-serif;
   display: flex;
 }
+
+.location-lis {
+
+
+}
 .map-search {
   display: flex;
   margin: 40px auto;
+  justify-content: center;
 }
 
 .search-container {
@@ -153,13 +159,19 @@ input {
 
 }
 
+.navbar-container {
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+
 img {
   width: 100%;
 }
 
 .thumbnail-div {
   width: 80px;
-
+  margin-right: 10px;
   object-fit: contain;
 }   
 

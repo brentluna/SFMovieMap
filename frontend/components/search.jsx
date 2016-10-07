@@ -26,7 +26,7 @@ class Search extends React.Component {
   render() {
     return(
       <div className='search-container'>
-        <input type='text' onChange={this.updateSearch} placeholder='Search by Actor, Movie, Location, Director'/>
+        <input type='text' onChange={this.updateSearch} placeholder='Search'/>
       </div>
     );
   }

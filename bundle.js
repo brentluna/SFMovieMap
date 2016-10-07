@@ -22453,7 +22453,6 @@
 	        case _movie_action.MovieConstants.FETCH_MOVIES:
 	          // let success = data => store.dispatch(receiveMovies(data));
 	          var success = function success(data) {
-	            var length = data.length;
 	            var finalData = [];
 	            var condensedData = {};
 	            data.forEach(function (res) {
@@ -22472,7 +22471,9 @@
 	              return condensedData[el];
 	            });
 	            console.log(newArr);
-	            var counter = newArr.length;
+	            var length = newArr.length;
+	            var counter = 0;
+	            console.log('counter: ' + counter);
 	            newArr.forEach(function (datum) {
 	              (0, _map_api_util.fetchOMD)({ yr: datum.release_year, title: datum.title }, function (res) {
 	                counter++;
@@ -22481,6 +22482,7 @@
 	                newData['poster'] = res.Poster;
 	                newData['plot'] = res.Plot;
 	                finalData.push(newData);
+	
 	                if (counter === length) {
 	                  console.log('inside dispatch');
 	                  store.dispatch((0, _movie_action.receiveMovies)(finalData));
@@ -34631,7 +34633,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'search-container' },
-	        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearch, placeholder: 'Search by Actor, Movie, Location, Director' })
+	        _react2.default.createElement('input', { type: 'text', onChange: this.updateSearch, placeholder: 'Search' })
 	      );
 	    }
 	  }]);
@@ -34740,9 +34742,17 @@
 		var resultLis = [];
 		if (movies.length) {
 			movies.forEach(function (res, idx) {
+				var locationLis = [];
+				res.locations.forEach(function (el, idx) {
+					locationLis.push(_react2.default.createElement(
+						'li',
+						{ key: idx + el, className: 'location-lis' },
+						el
+					));
+				});
 				resultLis.push(_react2.default.createElement(
 					'li',
-					{ key: idx },
+					{ key: idx, className: 'movie-lis' },
 					_react2.default.createElement(
 						'div',
 						{ className: 'thumbnail-div' },
@@ -34760,10 +34770,10 @@
 							'div',
 							{ className: 'search-info' },
 							_react2.default.createElement(
-								'p',
+								'ul',
 								null,
-								'Location: ',
-								res.locations
+								'Locations:',
+								locationLis
 							),
 							_react2.default.createElement(
 								'p',

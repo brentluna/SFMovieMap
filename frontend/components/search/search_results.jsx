@@ -6,8 +6,16 @@ const SearchResults = ({movies}) => {
 	const resultLis = [];
 	    if (movies.length) {
 	      movies.forEach((res, idx) => {
+	      		let locationLis = [];
+	      		res.locations.forEach((el, idx) => {
+	      			locationLis.push(
+      					<li key={idx + el} className='location-lis'>
+      						{el}
+      					</li>
+	      			)
+	      		})
 	      		resultLis.push(
-		          <li key={idx}>
+		          <li key={idx} className='movie-lis'>
 		          	<div className='thumbnail-div'>
 		          		<img src={res.poster} />
 		          	</div>
@@ -16,9 +24,10 @@ const SearchResults = ({movies}) => {
 			              {res.title}
 			            </h4>
 			            <div className='search-info'>
-				            <p>
-				              Location: {res.locations}
-				            </p>
+				            <ul>
+				            	Locations:
+				              {locationLis}
+				            </ul>
 				            <p>
 				            	Released: {res.release_year}
 			            	</p>
