@@ -1,6 +1,6 @@
 import React from 'react';
 import {fetchOMD} from '../../util/map_api_util';
-
+import Collapsible from 'react-collapsible';
 
 const SearchResults = ({movies}) => {
 	const resultLis = [];
@@ -24,10 +24,15 @@ const SearchResults = ({movies}) => {
 			              {res.title}
 			            </h4>
 			            <div className='search-info'>
-				            <ul>
-				            	Locations:
-				              {locationLis}
-				            </ul>
+
+			            	<Collapsible className='collapse-title' trigger='Locations'>
+					            <ul>
+					              {locationLis}
+					            </ul>
+				            </Collapsible>
+				            <Collapsible className='collapse-title'trigger='Plot'>
+				            	{res.plot}
+				            </Collapsible>
 				            <p>
 				            	Released: {res.release_year}
 			            	</p>

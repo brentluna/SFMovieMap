@@ -152,6 +152,7 @@ input {
 
 .search-info {
   font-size: 12px;
+  width: 180px;
 }
 
 
@@ -167,16 +168,23 @@ input {
 
 img {
   width: 100%;
+  object-fit: cover;
+  height: 100%;
 }
 
 .thumbnail-div {
-  width: 80px;
+  width: 120px;
+  height: 100px;
   margin-right: 10px;
-  object-fit: contain;
 }   
 
 .search-ul {
  max-height: 600px;
  overflow-y: scroll;
- background: teal   
+ background: teal;   
+ width: 300px;
+}
+
+.collapse-title {
+  font-size: 16px;
 }
