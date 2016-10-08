@@ -79,7 +79,7 @@ h1 {
   
   font-family: 'ACFilmStrip', Cursive;
   text-align: center;
-  font-size: 36px;
+  font-size: 46px;
   word-spacing: -20px;
 }
 .map {
@@ -242,4 +242,13 @@ img {
 
 .plot:hover {
   cursor: default
+}
+
+button {
+  background: #f05053;
+}
+.modal-text {
+  padding: 10px;
+  font-size: 22px;
+  font-family: sans-serif;
 }
