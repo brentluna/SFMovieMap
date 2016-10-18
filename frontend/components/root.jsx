@@ -56,8 +56,8 @@ class Root extends React.Component {
 
         <Navbar />
         <div className='map-search'>
-          <MapContainer />
           <SearchResultsContainer />
+          <MapContainer />
         </div>
       </div>
       </Provider>
