@@ -12,7 +12,7 @@ const Navbar = () => {
 				<div className='img-div'>
 					<img src='./movie_camera.png' />	
 				</div>
-				<h1>SF Film app</h1>
+				<h1>SF Film App</h1>
 			</div>
 				<a href='http://github.com/brentluna/SFMovieMap' target='_blank'>
 				<GitHub className='github' />

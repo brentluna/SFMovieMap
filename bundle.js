@@ -34737,7 +34737,7 @@
 					_react2.default.createElement(
 						'h1',
 						null,
-						'SF Film app'
+						'SF Film App'
 					)
 				),
 				_react2.default.createElement(
