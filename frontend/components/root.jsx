@@ -16,7 +16,8 @@ const customStyles = {
     marginRight           : '-50%',
     transform             : 'translate(-50%, -50%)',
     maxWidth              : '400px',
-    background            : 'whitesmoke'
+    background            : 'whitesmoke', 
+    padding               : '40px'
   }
 };
 
@@ -46,10 +47,9 @@ class Root extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles} >
-
+          <i className="material-icons" onClick={this.closeModal}>close</i>
           <h1>SF Film App</h1>
           <div className='modal-text'>Search for movies and shows that have been filmed in San Francisco. You can search by title, actor, directors, and locations. Click on map markers to get more details, or click on 'Plot' or 'Locations' in the search results.</div>
-          <button onClick={this.closeModal}>close</button>
           
         </Modal>
 

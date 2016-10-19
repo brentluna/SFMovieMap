@@ -32833,7 +32833,8 @@
 	    marginRight: '-50%',
 	    transform: 'translate(-50%, -50%)',
 	    maxWidth: '400px',
-	    background: 'whitesmoke'
+	    background: 'whitesmoke',
+	    padding: '40px'
 	  }
 	};
 	
@@ -32873,6 +32874,11 @@
 	              onRequestClose: this.closeModal,
 	              style: customStyles },
 	            _react2.default.createElement(
+	              'i',
+	              { className: 'material-icons', onClick: this.closeModal },
+	              'close'
+	            ),
+	            _react2.default.createElement(
 	              'h1',
 	              null,
 	              'SF Film App'
@@ -32881,11 +32887,6 @@
 	              'div',
 	              { className: 'modal-text' },
 	              'Search for movies and shows that have been filmed in San Francisco. You can search by title, actor, directors, and locations. Click on map markers to get more details, or click on \'Plot\' or \'Locations\' in the search results.'
-	            ),
-	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.closeModal },
-	              'close'
 	            )
 	          ),
 	          _react2.default.createElement(_navbar2.default, null),

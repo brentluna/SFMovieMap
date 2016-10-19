@@ -245,11 +245,19 @@ img {
   cursor: default
 }
 
-button {
-  background: #f05053;
+.material-icons {
+  color: black;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
 }
 .modal-text {
-  padding: 10px;
-  font-size: 22px;
-  font-family: sans-serif;
+  padding: 0px;
+    margin-top: 40px;
+    font-size: 18px;
+    font-family: sans-serif;
+    line-height: 25px;
 }
